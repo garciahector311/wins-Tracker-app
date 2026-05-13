@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+    <div class ="habit-cards">  
+        <section class="habit-card" id="gym-card">
+            <button type="button" class="delete-btn">Delete</button>
+            <p class="card-label">gym</p>
+            <p class="card-number">0</p>
+        </section>
+        <section class="habit-card" id="coding-card">
+            <button type="button" class="delete-btn">Delete</button>
+            <p class="card-label">coding</p>
+            <p class="card-number">0</p>
+        </section>
+        <section class="habit-card" id="dj-card">
+            <button type="button" class="delete-btn">Delete</button>
+            <p class="card-label">Dj</p>
+            <p class="card-number">0</p>
+        </section>
+    </div>
+
+    <button type="button" id="edit-btn">Edit</button>
+    
+    <div class="add-habit-card">
+        <section id="new-habit-card">
+            <input id="new-habit-input" type="text" placeholder="Type New Habit Name Here">
+            <input id="new-habit-color" type="color">
+            <button id="new-habit-submit" type="button">Submit</button>
+
+        </section>
+    </div>
+    
+    <div class="nav-buttons">
+        <button id="prev-button" type="button">Previous</button>
+        <button id="next-button" type="button">Next</button>
+    </div>
+
+    <h1 id="month-display"></h1>
+
+    <div id="calendar-weekdays">
+        <p class="day-header">Sunday</p>
+        <p class="day-header">Monday</p>
+        <p class="day-header">Tuesday</p>
+        <p class="day-header">Wednesday</p>
+        <p class="day-header">Thursday</p>
+        <p class="day-header">Friday</p>
+        <p class="day-header">Saturday</p>        
+    </div>
+
+    <div id="calendar-grid">
+            
+    </div>
+    
+    <script src="index.js"></script>
+</body>
+</html>

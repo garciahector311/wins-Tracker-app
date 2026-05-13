@@ -1,0 +1,43 @@
+.habit-card{
+    border: 1px solid black;
+}
+.habit-cards{
+    display: flex;
+}
+
+#calendar-weekdays{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+#month-display{
+    text-align: center;
+}
+
+#calendar-grid { 
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar-square {
+    border: 1px solid black;
+    padding: 10px;
+    height: 60px;
+}
+
+.day-header {
+    text-align: center;
+}
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.delete-btn {
+    display: none;
+}
+
+.edit-mode .delete-btn {
+    display: block;
+}
