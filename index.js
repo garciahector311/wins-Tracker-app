@@ -10,6 +10,8 @@ let categoryColors = {
     'dj': 'purple'
 }
 
+
+
 const existingCalendarData = localStorage.getItem('calendarData')
 if(existingCalendarData){
     calendarData = JSON.parse(existingCalendarData)
@@ -22,6 +24,14 @@ if(existingCategoryColors){
     categoryColors = JSON.parse(existingCategoryColors)
 }
 categoryColors = { ...defaults, ...categoryColors }
+
+Object.keys(categoryColors).forEach(category => {
+    if(category !== 'gym' && category !== 'coding' && category !== 'dj'){
+        if(!document.querySelector(`#${category}-card`)){
+            createHabitCard(category)
+        }
+    }
+})
 
 document.querySelector('#gym-card').addEventListener('click', () =>{
   activeCategory= 'gym'
@@ -61,6 +71,36 @@ function deleteCategory(categoryName){
     localStorage.setItem('categoryColors', JSON.stringify(categoryColors))
 }
 
+function createHabitCard(habitName) {
+
+    let habitNameCard = document.createElement('section')
+    habitNameCard.classList.add('habit-card')
+    habitNameCard.classList.add(`${habitName}-card`)
+    habitNameCard.id = `${habitName}-card`
+    document.querySelector('.habit-cards').appendChild(habitNameCard)
+
+    let newDeleteBtn = document.createElement('button')
+   newDeleteBtn.innerHTML = 'Delete'
+   newDeleteBtn.classList.add('delete-btn') 
+   newDeleteBtn.addEventListener('click', () =>     deleteCategory(habitName))
+   habitNameCard.appendChild(newDeleteBtn)
+
+    let habitNameLabel = document.createElement('p')
+    habitNameLabel.innerHTML = habitName
+    habitNameLabel.classList.add(`${habitName}-label`)
+    habitNameCard.appendChild(habitNameLabel)
+
+    let habitNameCounter = document.createElement('p')
+    habitNameCounter.innerHTML = 0
+    habitNameCounter.classList.add('card-number')
+    habitNameCounter.classList.add(`${habitName}-number`)
+    habitNameCard.appendChild(habitNameCounter)
+    
+    habitNameCard.addEventListener('click', () => {
+        activeCategory = `${habitName}`
+    })
+}
+
 document.querySelector('#edit-btn').addEventListener('click', () => {
 editMode = editMode ? false : true
 document.querySelector(`.habit-cards`).classList.toggle('edit-mode')
@@ -83,32 +123,8 @@ document.querySelector('#new-habit-submit').addEventListener('click', ()=>{
     let newDotColor = document.querySelector('#new-habit-color').value
     categoryColors[newHabit] = newDotColor
 
-    let newHabitCard = document.createElement('section')
-    newHabitCard.classList.add('habit-card')
-    newHabitCard.classList.add(`${newHabit}-card`)
-    newHabitCard.id = `${newHabit}-card`
-    document.querySelector('.habit-cards').appendChild(newHabitCard)
-
-    let newDeleteBtn = document.createElement('button')
-   newDeleteBtn.innerHTML = 'Delete'
-   newDeleteBtn.classList.add('delete-btn') 
-   newDeleteBtn.addEventListener('click', () => deleteCategory(newHabit))
-   newHabitCard.appendChild(newDeleteBtn)
-
-    let newHabitLabel = document.createElement('p')
-    newHabitLabel.innerHTML = newHabit
-    newHabitLabel.classList.add(`${newHabit}-label`)
-    newHabitCard.appendChild(newHabitLabel)
-
-    let newHabitCounter = document.createElement('p')
-    newHabitCounter.innerHTML = 0
-    newHabitCounter.classList.add('card-number')
-    newHabitCounter.classList.add(`${newHabit}-number`)
-    newHabitCard.appendChild(newHabitCounter)
-    
-    newHabitCard.addEventListener('click', () => {
-        activeCategory = `${newHabit}`
-    })
+    localStorage.setItem('categoryColors', JSON.stringify(categoryColors))
+    createHabitCard(newHabit)
     
 })
 
